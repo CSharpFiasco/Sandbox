@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0">
+  <Sdk Name="Microsoft.Build.Sql" Version="0.1.7-preview" />
+  <PropertyGroup>
+    <Name>sample</Name>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CI</ModelCollation>
+    <ProjectGuid>{939b2fc6-e398-4920-a5d4-7b3816c0b3a5}</ProjectGuid>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Student.sql" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="Build">
+    <Message Text="PreBuild - Starting to remove obj folder" />
+    <!-- Remove obj folder -->
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" Condition="Exists('$(BaseIntermediateOutputPath)')" ContinueOnError="True" />
+    <Message Text="PreBuild - Finished removing obj folder" />
+  </Target>
+</Project>
